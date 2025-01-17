@@ -42,7 +42,7 @@ URL_BIN_APPARMOR="${URL_RAW_BASE}/hassio-apparmor"
 URL_SERVICE_HASSIO="${URL_RAW_BASE}/hassio-supervisor.service"
 URL_SERVICE_APPARMOR="${URL_RAW_BASE}/hassio-apparmor.service"
 URL_APPARMOR_PROFILE="https://version.home-assistant.io/apparmor.txt"
-URL_UPDATER="https://raw.githubusercontent.com/konnectedvn/hass-config/master/hassio_installer.sh/updater.json"
+URL_UPDATER="https://raw.githubusercontent.com/vaveasna/hass-config/master/hassio_installer.sh/updater.json"
 # Check env
 command -v systemctl > /dev/null 2>&1 || error "Only systemd is supported!"
 command -v docker > /dev/null 2>&1 || error "Please install docker first"
