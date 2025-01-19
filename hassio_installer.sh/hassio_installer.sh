@@ -207,9 +207,20 @@ sed -i "s/{machine}/${MACHINE}/g" "${DATA_SHARE}/updater.json"
 #sed -i "s/{arch}/${ARCH}/g" "${DATA_SHARE}/updater.json"
 #
 # Pull supervisor image
-echo "[Info] Install supervisor Docker container"
-docker pull "$HASSIO_DOCKER:latest" > /dev/null
-docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+# echo "[Info] Install supervisor Docker container"
+# docker pull "$HASSIO_DOCKER:latest" > /dev/null
+# docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+
+# Install Supervisor
+info "Install supervisor startup scripts"
+sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}"/sbin/hassio-supervisor
+sed -i -e "s,%%BINARY_DOCKER%%,${BINARY_DOCKER},g" \
+       -e "s,%%SERVICE_DOCKER%%,${SERVICE_DOCKER},g" \
+       -e "s,%%BINARY_HASSIO%%,${PREFIX}/sbin/hassio-supervisor,g" \
+       "${SYSCONFDIR}/systemd/system/hassio-supervisor.service"
+
+chmod a+x "${PREFIX}/sbin/hassio-supervisor"
+systemctl enable hassio-supervisor.service > /dev/null 2>&1;
 
 ##
 # Install Hass.io Supervisor
