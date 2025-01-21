@@ -208,8 +208,8 @@ sed -i "s/{machine}/${MACHINE}/g" "${DATA_SHARE}/updater.json"
 #
 # Pull supervisor image
 # echo "[Info] Install supervisor Docker container"
-# docker pull "$HASSIO_DOCKER:latest" > /dev/null
-# docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
+# docker pull "$HASSIO_DOCKER:2025.01.0" > /dev/null
+# docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:2025.01.0" > /dev/null
 
 # Install Supervisor
 info "Install supervisor startup scripts"
